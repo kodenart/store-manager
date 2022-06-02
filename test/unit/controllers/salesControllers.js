@@ -1,10 +1,7 @@
 const { expect } = require('chai')
 const sinon = require('sinon')
 const saleService = require('../../../services/saleService')
-const saleController = {
-  getAll: () => {},
-  getById: () => {}
-}
+const saleController = require('../../../controllers/saleController')
 
 
 describe('Unit tests getAll and getById sale controllers', () => {
@@ -18,7 +15,7 @@ describe('Unit tests getAll and getById sale controllers', () => {
     sinon.stub(saleService, 'getAll').resolves(getAllResolve)
     sinon.stub(saleService, 'getById').resolves(getByIdResolve)
 
-    res.status = sinon.stub().returns()
+    res.status = sinon.stub().returns(res)
     res.json = sinon.stub().returns()
     
   })
@@ -38,6 +35,7 @@ describe('Unit tests getAll and getById sale controllers', () => {
 
   describe('Testing the getById method', () => {
     it('it returns an array (collection) of resources', async () => {
+      req.params = { id: 1 };
       await saleController.getById(req, res)
       expect(res.status.calledWith(200)).to.be.equal(true)
       expect(res.json.calledWith(getByIdResolve)).to.be.equal(true)
