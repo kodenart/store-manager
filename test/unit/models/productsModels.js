@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const sinon = require('sinon')
 
-const productModel = require('../../../models/productModel')
+const productsModel = require('../../../models/productsModel')
 const connection = require('../../../models/connection')
 
 describe('Unit testing the productModel', () => {
@@ -20,7 +20,7 @@ describe('Unit testing the productModel', () => {
     });
 
     it('it returns an array (collection) of resources', async () => {
-      const response = await productModel.getAll()
+      const response = await productsModel.getAll()
       expect(response).to.be.an('array')
       expect(response).to.have.length.above(0)
     })
@@ -39,7 +39,7 @@ describe('Unit testing the productModel', () => {
     });
 
     it('it returns a resource', async () => {
-      const response = await productModel.getById(1)
+      const response = await productsModel.getById(1)
       expect(response).to.be.an('object')
       expect(response).to.have.property('id')
       expect(response).to.have.property('name')

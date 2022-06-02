@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const sinon = require('sinon')
-const productService = require('../../../services/productService')
-const productController = require('../../../controllers/productController')
+const productsService = require('../../../services/productsService')
+const productsController = require('../../../controllers/productsController')
 
 
 describe('Unit tests getAll and getById product controllers', () => {
@@ -12,8 +12,8 @@ describe('Unit tests getAll and getById product controllers', () => {
   const getByIdResolve = getAllResolve.filter((e) => e.id === idParam)
 
   before(() => {
-    sinon.stub(productService, 'getAll').resolves(getAllResolve)
-    sinon.stub(productService, 'getById').resolves(getByIdResolve)
+    sinon.stub(productsService, 'getAll').resolves(getAllResolve)
+    sinon.stub(productsService, 'getById').resolves(getByIdResolve)
 
     res.status = sinon.stub().returns(res)
     res.json = sinon.stub().returns()
@@ -21,13 +21,13 @@ describe('Unit tests getAll and getById product controllers', () => {
   })
 
   after(() => {
-    productService.getAll.restore()
-    productService.getById.restore()
+    productsService.getAll.restore()
+    productsService.getById.restore()
   })
 
   describe('Testing the getAll method', () => {
     it('calls status with 200 and json with anArrOfObj', async () => {
-      await productController.getAll(req, res)
+      await productsController.getAll(req, res)
       expect(res.status.calledWith(200)).to.be.equal(true)
       expect(res.json.calledWith(getAllResolve)).to.be.equal(true)
     })
@@ -36,7 +36,7 @@ describe('Unit tests getAll and getById product controllers', () => {
   describe('Testing the getById method', () => {
     it('it returns an array (collection) of resources', async () => {
       req.params = { id: 1 };
-      await productController.getById(req, res)
+      await productsController.getById(req, res)
       expect(res.status.calledWith(200)).to.be.equal(true)
       expect(res.json.calledWith(getByIdResolve)).to.be.equal(true)
     })

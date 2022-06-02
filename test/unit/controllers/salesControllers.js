@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const sinon = require('sinon')
-const saleService = require('../../../services/saleService')
-const saleController = require('../../../controllers/saleController')
+const salesService = require('../../../services/salesService')
+const salesController = require('../../../controllers/salesController')
 
 
 describe('Unit tests getAll and getById sale controllers', () => {
@@ -12,8 +12,8 @@ describe('Unit tests getAll and getById sale controllers', () => {
   const getByIdResolve = getAllResolve.filter((e) => e.id === idParam)
 
   before(() => {
-    sinon.stub(saleService, 'getAll').resolves(getAllResolve)
-    sinon.stub(saleService, 'getById').resolves(getByIdResolve)
+    sinon.stub(salesService, 'getAll').resolves(getAllResolve)
+    sinon.stub(salesService, 'getById').resolves(getByIdResolve)
 
     res.status = sinon.stub().returns(res)
     res.json = sinon.stub().returns()
@@ -21,13 +21,13 @@ describe('Unit tests getAll and getById sale controllers', () => {
   })
 
   after(() => {
-    saleService.getAll.restore()
-    saleService.getById.restore()
+    salesService.getAll.restore()
+    salesService.getById.restore()
   })
 
   describe('Testing the getAll method', () => {
     it('it returns an array (collection) of resources', async () => {
-      await saleController.getAll(req, res)
+      await salesController.getAll(req, res)
       expect(res.status.calledWith(200)).to.be.equal(true)
       expect(res.json.calledWith(getAllResolve)).to.be.equal(true)
     })
@@ -36,7 +36,7 @@ describe('Unit tests getAll and getById sale controllers', () => {
   describe('Testing the getById method', () => {
     it('it returns an array (collection) of resources', async () => {
       req.params = { id: 1 };
-      await saleController.getById(req, res)
+      await salesController.getById(req, res)
       expect(res.status.calledWith(200)).to.be.equal(true)
       expect(res.json.calledWith(getByIdResolve)).to.be.equal(true)
     })

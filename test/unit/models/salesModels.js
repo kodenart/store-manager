@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const sinon = require('sinon')
 
-const saleModel = require('../../../models/saleModel')
+const salesModel = require('../../../models/salesModel')
 const connection = require('../../../models/connection')
 
 describe('Unit testing the saleModel', () => {
@@ -18,7 +18,7 @@ describe('Unit testing the saleModel', () => {
 
   describe('Testing the getAll method', () => {
     it('it returns an array (collection) of resources', async () => {
-      const response = await saleModel.getAll()
+      const response = await salesModel.getAll()
       expect(response).to.be.an('array')
       expect(response).to.have.length.above(0)
     })
@@ -26,7 +26,7 @@ describe('Unit testing the saleModel', () => {
 
   describe('Testing the getById method', () => {
     it('it returns an array (collection) of resources', async () => {
-      const response = await saleModel.getById(1)
+      const response = await salesModel.getById(1)
       expect(response).to.be.an('array')
       expect(response).to.have.length.above(0)
     })
