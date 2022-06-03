@@ -1,9 +1,13 @@
 const express = require('express');
 const saleController = require('../controllers/salesController');
+const validateSales = require('../middlewares/validateSales');
 
 const route = express.Router();
 
 route.get('/', saleController.getAll);
 route.get('/:id', saleController.getById);
+
+route.post('/', validateSales);
+route.put('/:id', validateSales);
 
 module.exports = route;
