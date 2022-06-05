@@ -9,6 +9,6 @@ route.get('/', rescue(productsController.getAll));
 route.get('/:id', rescue(productsController.getById));
 
 route.post('/', validateProducts, rescue(productsController.add));
-// route.put('/:id', validateProducts, rescue(productsController.update));
+route.put('/:id', validateProducts, rescue(productsController.update));
 
 module.exports = route;

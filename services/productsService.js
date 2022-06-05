@@ -23,8 +23,18 @@ const add = async (name, quantity) => {
   return ({ id: insertId, name, quantity });
 };
 
+const update = async (id, name, quantity) => {
+  // checks if the id exists...
+  const noId = await getById(id);
+  if (noId.code && noId.message) return noId;
+  // proceed
+  const changedRows = await productsModel.update(id, name, quantity);
+  return changedRows;
+};
+
 module.exports = {
   getAll,
   getById,
   add,
+  update,
 };
