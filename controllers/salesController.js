@@ -1,15 +1,16 @@
+const httpStatus = require('../utils/httpStatus');
 const salesService = require('../services/salesService');
 
 const getAll = async (req, res) => {
   const result = await salesService.getAll();
-  return res.status(200).json(result);
+  return res.status(httpStatus.OK).json(result);
 };
 
-const getById = async (req, res) => {
+const getById = async (req, res, next) => {
   const { id } = req.params;
   const result = await salesService.getById(id);
-  if (result.length === 0) return res.status(404).json({ message: 'Sale not found' });
-  return res.status(200).json(result);
+  if (result.code && result.message) return next(result);
+  return res.status(httpStatus.OK).json(result);
 };
 
 module.exports = {
