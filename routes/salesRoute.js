@@ -7,7 +7,7 @@ const route = express.Router();
 route.get('/', saleController.getAll);
 route.get('/:id', saleController.getById);
 
-route.post('/', validateSales);
+route.post('/', validateSales, saleController.create);
 route.put('/:id', validateSales);
 
 module.exports = route;

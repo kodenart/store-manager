@@ -13,7 +13,14 @@ const getById = async (req, res, next) => {
   return res.status(httpStatus.OK).json(result);
 };
 
+const create = async (req, res, _next) => {
+  const salesArr = req.body;
+  const sales = await salesService.createSale(salesArr);
+  res.status(httpStatus.CREATED).json(sales);
+};
+
 module.exports = {
   getAll,
   getById,
+  create,
 };
