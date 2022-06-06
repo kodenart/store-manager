@@ -32,9 +32,18 @@ const update = async (id, name, quantity) => {
   return changedRows;
 };
 
+const exclude = async (id) => {
+  const noId = await getById(id);
+  if (noId.code && noId.message) return noId;
+
+  await productsModel.exclude(id);
+  return 0;
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   update,
+  exclude,
 };

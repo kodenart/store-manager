@@ -28,9 +28,17 @@ const update = async (req, res, next) => {
   return res.status(httpStatus.OK).json({ id, name, quantity });
 };
 
+const exclude = async (req, res, next) => {
+  const { id } = req.params;
+  const productDelete = await productsService.exclude(id);
+  if (productDelete.code && productDelete.message) return next(productDelete); 
+  return res.status(httpStatus.NO_CONTENT).end();
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   update,
+  exclude,
 };
