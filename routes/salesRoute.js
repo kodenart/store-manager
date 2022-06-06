@@ -8,6 +8,6 @@ route.get('/', saleController.getAll);
 route.get('/:id', saleController.getById);
 
 route.post('/', validateSales, saleController.create);
-route.put('/:id', validateSales);
+route.put('/:id', validateSales, saleController.update);
 
 module.exports = route;
