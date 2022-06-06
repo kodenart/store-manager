@@ -29,6 +29,16 @@ const deleteSales = async (saleId) => {
   return 0;
 };
 
+const excludeSale = async (saleId) => {
+  // checks if there's any sale with given id
+  const noId = await getById(saleId);
+  if (noId.code && noId.message) return noId;
+  // exclude the sale
+  await deleteSales(saleId);
+  await salesModel.excludeSale(saleId);
+  return 0;
+};
+
 const updateSales = async (saleId, newSales) => {
   // checks if there's any sale with given id
   const noId = getById(saleId);
@@ -45,4 +55,5 @@ module.exports = {
   getById,
   createSale,
   updateSales,
+  excludeSale,
 };
