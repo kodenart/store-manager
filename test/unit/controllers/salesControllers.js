@@ -113,13 +113,13 @@ describe('Unit tests all methods from sales controllers when something goes wron
 
   })
 
-  describe('Testing the add method', () => {
-    it('should call next with the error obj', async () => {
-      req.body = {name: 'ProductName', quantity: 42}
-      await salesController.create(req, res, next)
-      expect(next.calledWith(resolveError)).to.be.equal(true)
-    })
-  })
+  // describe('Testing the create method', () => {
+  //   it('should call next with the error obj', async () => {
+  //     req.body = {name: 'ProductName', quantity: 42}
+  //     await salesController.create(req, res, next)
+  //     expect(next.calledWith(resolveError)).to.be.equal(true)
+  //   })
+  // })
 
   describe('Testing the update method', () => {
     it('should call next with the error obj', async () => {
