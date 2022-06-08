@@ -83,4 +83,5 @@ module.exports = {
   createSale,
   updateSales,
   excludeSale,
+  validateQuantity,
 };
