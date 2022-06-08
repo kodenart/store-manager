@@ -48,14 +48,6 @@ const excludeSale = async (saleId) => {
   return 0;
 };
 
-// const plusQuantity = async (productId, quantity) => {
-
-// };
-
-// const minusQuantity = async (productId, quantity) => {
-
-// };
-
 module.exports = {
   getAll,
   getById,

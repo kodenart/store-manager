@@ -35,10 +35,26 @@ const exclude = async (id) => {
   return 0;
 };
 
+const updateQnt = async ({ productId, quantity }, operation) => {
+  const currQnt = (await getById(productId)).quantity;
+  let newQnt;
+  if (operation === 'add') {
+    newQnt = currQnt + quantity;
+  } else if (operation === 'minus') {
+    newQnt = currQnt - quantity;
+  }
+  const query = `UPDATE StoreManager.products
+  SET quantity = ?
+  WHERE id = ?`;
+  const [result] = await connection.execute(query, [newQnt, productId]);
+  return result;
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   update,
   exclude,
+  updateQnt,
 };

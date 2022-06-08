@@ -13,9 +13,10 @@ const getById = async (req, res, next) => {
   return res.status(httpStatus.OK).json(result);
 };
 
-const create = async (req, res, _next) => {
+const create = async (req, res, next) => {
   const salesArr = req.body;
   const sales = await salesService.createSale(salesArr);
+  if (sales.code && sales.message) return next(sales);
   res.status(httpStatus.CREATED).json(sales);
 };
 
