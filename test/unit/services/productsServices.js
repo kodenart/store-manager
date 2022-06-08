@@ -47,10 +47,12 @@ describe('Unit testing product services', () => {
   describe('tests the add method', async () => {
     before(() => {
       sinon.stub(productsModel, 'add').resolves(resolveAdd)
+      sinon.stub(productsModel, 'getAll').resolves([])
     })
 
     after(() => {
       productsModel.add.restore()
+      productsModel.getAll.restore()
     })
 
     it('returns a resource', async () => {
@@ -62,10 +64,12 @@ describe('Unit testing product services', () => {
   describe('tests the update method', async () => {
     before(() => {
       sinon.stub(productsModel, 'update').resolves(resolveUpdate)
+      sinon.stub(productsModel, 'getById').resolves([])
     })
 
     after(() => {
       productsModel.update.restore()
+      productsModel.getById.restore()
     })
 
     it('returns a resource', async () => {
@@ -77,10 +81,12 @@ describe('Unit testing product services', () => {
   describe('tests the exclude method', async () => {
       before(() => {
         sinon.stub(productsModel, 'exclude').resolves(resolveExclude)
+        sinon.stub(productsModel, 'getById').resolves([])
       })
 
       after(() => {
         productsModel.exclude.restore()
+        productsModel.getById.restore()
       })
 
       it('returns a resource', async () => {
